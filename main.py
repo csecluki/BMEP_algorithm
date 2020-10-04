@@ -1,6 +1,7 @@
-from tabulate import tabulate
-import argparse
 import os
+import time
+import argparse
+from tabulate import tabulate
 
 
 def main(filename):
@@ -83,7 +84,7 @@ def main(filename):
 
 def stripline(line):
     strip = line.split()
-    return (strip[0], strip[1], int(strip[2]))
+    return tuple([strip[0], strip[1], int(strip[2])])
 
 
 if __name__ == '__main__':
@@ -98,6 +99,9 @@ if __name__ == '__main__':
     )
     args = parser.parse_args()
     try:
+        t0 = time.time()
         main(args.file)
+        print(f"Computed in: {round(time.time() - t0, 6)}s.")
+        print()
     except FileNotFoundError:
         print("No such file or directory")
