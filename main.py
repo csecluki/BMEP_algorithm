@@ -41,25 +41,31 @@ def main(filename):
         new_row = recent[:]
         iteration += 1
         new_row[0] = iteration
-        out = queue[0]
-        out_index = headers.index(out)
+        current_node = queue[0]
+        current_node_index = headers.index(current_node)
         queue = queue[1:]
 
         for i in roads:
-            if i[0] == out and i[1] not in queue:
-                if recent[out_index][0] + i[2] < recent[headers.index(i[1])][0]:
-                    if i[1] in previous:
-                        queue.insert(0, i[1])
+            start_node = i[0]
+            end_node = i[1]
+            distance = i[2]
+            if start_node == current_node and end_node not in queue:
+                if recent[current_node_index][0] + distance < recent[headers.index(end_node)][0]:
+                    if end_node in previous:
+                        queue.insert(0, end_node)
                     else:
-                        previous.append(i[0])
-                        queue.append(i[1])
+                        previous.append(start_node)
+                        queue.append(end_node)
         new_row[1] = queue
 
         for i in range(2, len(headers)):
             for track in roads:
-                if track[0] == out and track[1] == headers[i]:
-                    if recent[out_index][0] + track[2] < new_row[i][0]:
-                        new_row[i] = [recent[out_index][0] + track[2], out]
+                start_node = track[0]
+                end_node = track[1]
+                distance = track[2]
+                if start_node == current_node and end_node == headers[i]:
+                    if recent[current_node_index][0] + distance < new_row[i][0]:
+                        new_row[i] = [recent[current_node_index][0] + distance, current_node]
 
         recent = new_row[:]
         table.append(new_row)
