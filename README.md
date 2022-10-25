@@ -13,24 +13,22 @@ To run program all you have to do is supply script with appropriate formatted fi
 In output you will receive table with every iteration, answer containing shortest path length and how that path runs and also how long it took to find this solution.
 
 ```
-  Iteration  Queue            a           b             c             d             e             f
------------  ---------------  ----------  ------------  ------------  ------------  ------------  ------------
-          0  ['a']            [0, False]  [249, False]  [249, False]  [249, False]  [249, False]  [249, False]
-          1  ['b', 'c']       [0, False]  [5, 'a']      [6, 'a']      [249, False]  [249, False]  [249, False]
-          2  ['c', 'd', 'e']  [0, False]  [5, 'a']      [6, 'a']      [10, 'b']     [10, 'b']     [249, False]
-          3  ['d', 'e']       [0, False]  [5, 'a']      [6, 'a']      [10, 'b']     [10, 'b']     [249, False]
-          4  ['e', 'f']       [0, False]  [5, 'a']      [6, 'a']      [10, 'b']     [10, 'b']     [15, 'd']
-          5  ['f', 'c']       [0, False]  [5, 'a']      [4, 'e']      [10, 'b']     [10, 'b']     [15, 'd']
-          6  ['c']            [0, False]  [5, 'a']      [4, 'e']      [10, 'b']     [10, 'b']     [15, 'd']
-          7  ['d']            [0, False]  [5, 'a']      [4, 'e']      [8, 'c']      [10, 'b']     [15, 'd']
-          8  ['f']            [0, False]  [5, 'a']      [4, 'e']      [8, 'c']      [10, 'b']     [13, 'd']
-          9  []               [0, False]  [5, 'a']      [4, 'e']      [8, 'c']      [10, 'b']     [13, 'd']
+  Iteration  Queue       a           b             c             d             e             f
+-----------  ----------  ----------  ------------  ------------  ------------  ------------  ------------
+          0  ['a']       [0, False]  [189, False]  [189, False]  [189, False]  [189, False]  [189, False]
+          1  ['b', 'c']  [0, False]  [5, 'a']      [4, 'a']      [189, False]  [189, False]  [189, False]
+          2  ['c', 'd']  [0, False]  [5, 'a']      [2, 'b']      [12, 'b']     [189, False]  [189, False]
+          3  ['d', 'e']  [0, False]  [5, 'a']      [2, 'b']      [12, 'b']     [7, 'c']      [189, False]
+          4  ['e', 'f']  [0, False]  [5, 'a']      [2, 'b']      [12, 'b']     [7, 'c']      [17, 'd']
+          5  ['d', 'f']  [0, False]  [5, 'a']      [2, 'b']      [9, 'e']      [7, 'c']      [13, 'e']
+          6  ['f']       [0, False]  [5, 'a']      [2, 'b']      [9, 'e']      [7, 'c']      [13, 'e']
+          7  []          [0, False]  [5, 'a']      [2, 'b']      [9, 'e']      [7, 'c']      [13, 'e']
 
 Answer:
 	Track length: 13
-	Order: a -> b -> e -> c -> d -> f
+	Order: a -> b -> c -> e -> f
 
-Computed in: 0.000995s.
+Computed in: 0.000907s.
 ```
 
 # To do
