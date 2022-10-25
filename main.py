@@ -1,7 +1,21 @@
 import os
 import time
 import argparse
+
 from tabulate import tabulate
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Pathfinding BMEP algorithm to find shortest path from starting node "
+                                                 "to ending node in directed graph")
+    parser.add_argument(
+        "-f", "--file",
+        help=".txt file with description of graph in given pattern: first line - starting point, "
+             "second line - ending point, following lines - roads between nodes "
+             "StartNode_EndNode_Distance (example: 'a b 5')",
+        required=True
+    )
+    return parser.parse_args()
 
 
 def main(filename):
@@ -9,7 +23,7 @@ def main(filename):
     table = []
     roads = []
     queue = []
-    tot = 0
+    total = 0
     iteration = 0
 
     if os.path.isfile(filename):
@@ -26,12 +40,12 @@ def main(filename):
             roads.append(road)
             if road[1] not in headers:
                 headers.append(road[1])
-            tot += road[2] ** 2
+            total += road[2] ** 2
 
     queue.append(starting_point)
 
     first_row = [iteration, queue, [0, False]]
-    first_row.extend([[tot, False] for _ in range(len(headers) - 3)])
+    first_row.extend([[total, False] for _ in range(len(headers) - 3)])
     table.append(first_row)
 
     recent = first_row[:]
@@ -94,16 +108,7 @@ def stripline(line):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Pathfinding BMEP algorithm to find shortest path from starting node "
-                                                 "to ending node in directed graph")
-    parser.add_argument(
-        "-f", "--file",
-        help=".txt file with description of graph in given pattern: first line - starting point, "
-             "second line - ending point, following lines - roads between nodes "
-             "StartNode_EndNode_Distance (example: 'a b 5')",
-        required=True
-    )
-    args = parser.parse_args()
+    args = parse_args()
     try:
         t0 = time.time()
         main(args.file)
